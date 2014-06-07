@@ -1,0 +1,13 @@
+<?php
+  function updatemail_from_mail_alter(&$message) {
+
+    if ($sender = variable_get('updatemail_from_sender', NULL) && $message['id'] == 'update_status_notify') {
+      //$sender = variable_get('updatemail_from_sender', variable_get('site_mail', ''));
+      //$recipient = variable_get('updatemail_from_recipient', '');
+      $message['to'] = $message['to'] . ($recipient = variable_get('updatemail_from_recipient', FALSE)) ? ',' . $recipient : '';
+      $message['from'] = $sender;
+      //$message['headers']['Return-Path'] = $sender;
+      //$message['headers']['Sender'] = $sender;
+      $message['headers']['From'] = $sender;
+    }
+  }

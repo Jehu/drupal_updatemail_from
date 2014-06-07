@@ -1,0 +1,4 @@
+name = Update Mail From
+description = Send drupal update email from a configurable address
+core = 7.x
+package = Mail
